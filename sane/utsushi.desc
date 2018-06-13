@@ -21,7 +21,7 @@
 ;;  Backend data
 ;;
 :backend "utsushi"
-:url     "https://github.com/utsushi/utsushi"
+:url     "https://gitlab.com/utsushi/utsushi"
 
 ;;  Device and manufacturer information.
 ;;
