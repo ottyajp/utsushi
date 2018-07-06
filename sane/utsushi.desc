@@ -638,3 +638,45 @@
 :usbid     "0x04b8" "0x1143"
 :status    :good
 :comment   "L3xxx?"
+
+:model     "PID 1145"
+:interface "USB"
+:usbid     "0x04b8" "0x1145"
+:status    :good
+:comment   "EP-81xA?"
+
+:model     "PID 1146"
+:interface "USB"
+:usbid     "0x04b8" "0x1146"
+:status    :good
+:comment   "EP-71xA?"
+
+:model     "PID 1147"
+:interface "USB"
+:usbid     "0x04b8" "0x1147"
+:status    :good
+:comment   "XP-7xxx?"
+
+:model     "PID 1148"
+:interface "USB"
+:usbid     "0x04b8" "0x1148"
+:status    :good
+:comment   "PX-M8xxFX?"
+
+:model     "PID 114A"
+:interface "USB"
+:usbid     "0x04b8" "0x114a"
+:status    :good
+:comment   "L61x0?"
+
+:model     "PID 114B"
+:interface "USB"
+:usbid     "0x04b8" "0x114b"
+:status    :good
+:comment   "EP-8xxA?"
+
+:model     "PID 114C"
+:interface "USB"
+:usbid     "0x04b8" "0x114c"
+:status    :good
+:comment   "EP-8xxA?"
