@@ -172,6 +172,8 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
       else if (info.product_name () == "PID 111B"
 	    || info.product_name () == "PID 1131"
 	    || info.product_name () == "PID 1132"
+      || info.product_name () == "PID 114B"
+      || info.product_name () == "PID 114C"
 	    )
         {
           sp = make_shared< EP_8xxA > (cnx);
@@ -194,9 +196,10 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
           sp = make_shared< EP_810A > (cnx);
         }
       else if (info.product_name () == "PID 1134"
+      || info.product_name () == "PID 1146"
 	    )
         {
-          sp = make_shared< EP_710A > (cnx);
+          sp = make_shared< EP_71xA > (cnx);
         }
       else if (info.product_name () == "PID 1129"
 	    || info.product_name () == "PID 112A"
@@ -204,6 +207,7 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
             || info.product_name () == "PID 1135"
 	    || info.product_name () == "PID 1139"
 	    || info.product_name () == "PID 113A"
+      || info.product_name () == "PID 114A"
 	    )
         {
           sp = make_shared< L61x0 > (cnx);
@@ -218,6 +222,21 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
               )
         {
           sp = make_shared< L3xxx > (cnx);
+        }
+      else if (   info.product_name () == "PID 1147"
+              )
+        {
+          sp = make_shared< XP_7xxx > (cnx);
+        }
+      else if (   info.product_name () == "PID 1145"
+              )
+        {
+          sp = make_shared< EP_81xx > (cnx);
+        }
+      else if (   info.product_name () == "PID 1148"
+              )
+        {
+          sp = make_shared< PX_M8xxFX > (cnx);
         }
       else
         {

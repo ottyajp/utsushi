@@ -1607,8 +1607,8 @@ extended_scanner::configure_color_correction ()
     ("Perfection V19", profile_matrix_5)
     ("Perfection V39", profile_matrix_5)
     //
+    ("PID 1141", profile_matrix_6)
     ("PID 1142", profile_matrix_6)
-    ("PID 1143", profile_matrix_6)
     ;
 
   try {
