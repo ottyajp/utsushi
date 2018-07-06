@@ -81,7 +81,7 @@ DERIVED_COMPOUND_(compound_scanner, L3xxx,
 DERIVED_COMPOUND_(compound_scanner, EP_810A,
                   void configure ();
 );
-DERIVED_COMPOUND_(compound_scanner, EP_710A,
+DERIVED_COMPOUND_(compound_scanner, EP_71xA,
                   void configure ();
 );
 DERIVED_COMPOUND_(compound_scanner, L61x0,
@@ -91,6 +91,15 @@ DERIVED_COMPOUND_(compound_scanner, ET_77xx,
                   void configure ();
 );
 DERIVED_COMPOUND_(compound_scanner, PX_M884F,
+                  void configure ();
+);
+DERIVED_COMPOUND_(compound_scanner, XP_7xxx,
+                  void configure ();
+);
+DERIVED_COMPOUND_(compound_scanner, EP_81xx,
+                  void configure ();
+);
+DERIVED_COMPOUND_(compound_scanner, PX_M8xxFX,
                   void configure ();
 );
 
