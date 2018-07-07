@@ -25,6 +25,8 @@ ATTR{idVendor}!="04b8", GOTO="utsushi_esci_rules_end"
 
 LABEL="utsushi_esci_rules_begin"
 
+#  ES-8500, Expression 1640XL (see #59)
+ATTRS{idProduct}=="0109", ENV{utsushi_driver}="esci"
 #  DS-5500, DS-6500, DS-7500
 ATTRS{idProduct}=="0145", ENV{utsushi_driver}="esci"
 #  DS-50000, DS-60000, DS-70000

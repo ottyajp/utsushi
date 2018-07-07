@@ -137,6 +137,11 @@
 :usbid     "0x04b8" "0x0156"
 :status    :good
 
+:model     "ES-8500"
+:interface "USB"
+:usbid     "0x04b8" "0x0109"
+:status    :basic
+
 :model     "ET-2500"
 :interface "USB"
 :usbid     "0x04b8" "0x1105"
@@ -156,6 +161,11 @@
 :interface "USB"
 :usbid     "0x04b8" "0x1101"
 :status    :good
+
+:model     "Expression 1640XL"
+:interface "USB"
+:usbid     "0x04b8" "0x0109"
+:status    :basic
 
 :model     "L220"
 :interface "USB"
