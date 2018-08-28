@@ -18,7 +18,7 @@
 #  You ought to have received a copy of the GNU General Public License
 #  along with this package.  If not, see <http://www.gnu.org/licenses/>.
 
-ACTION!="add", GOTO="utsushi_esci_rules_end"
+# ACTION!="add", GOTO="utsushi_esci_rules_end"
 ENV{DEVTYPE}!="usb_device", GOTO="utsushi_esci_rules_end"
 ATTR{idVendor}!="04b8", GOTO="utsushi_esci_rules_end"
 
@@ -47,6 +47,8 @@ ATTRS{idProduct}=="0165", ENV{utsushi_driver}="esci"
 ATTRS{idProduct}=="0167", ENV{utsushi_driver}="esci"
 ATTRS{idProduct}=="0168", ENV{utsushi_driver}="esci"
 ATTRS{idProduct}=="0169", ENV{utsushi_driver}="esci"
+ATTRS{idProduct}=="016c", ENV{utsushi_driver}="esci"
+ATTRS{idProduct}=="016e", ENV{utsushi_driver}="esci"
 
 ATTRS{idProduct}=="08bc", ENV{utsushi_driver}="esci"
 ATTRS{idProduct}=="08c0", ENV{utsushi_driver}="esci"

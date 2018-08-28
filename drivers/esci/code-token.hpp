@@ -442,6 +442,7 @@ namespace information {
   const quad CRR  = CODE_TOKEN (NUMBER , UPPER_C, UPPER_R, UPPER_R);
   const quad SRD  = CODE_TOKEN (NUMBER , UPPER_S, UPPER_R, UPPER_D);
   const quad JOB  = CODE_TOKEN (NUMBER , UPPER_J, UPPER_O, UPPER_B);
+  const quad EXI  = CODE_TOKEN (NUMBER , UPPER_E, UPPER_X, UPPER_I);
 
   //! Automatic document feeder features
   namespace adf {
@@ -458,6 +459,7 @@ namespace information {
     const quad AREA = CODE_TOKEN (UPPER_A, UPPER_R, UPPER_E, UPPER_A);
     const quad AMIN = CODE_TOKEN (UPPER_A, UPPER_M, UPPER_I, UPPER_N);
     const quad AMAX = CODE_TOKEN (UPPER_A, UPPER_M, UPPER_A, UPPER_X);
+    const quad GDLS = CODE_TOKEN (UPPER_G, UPPER_D, UPPER_L, UPPER_S);
     //! Document source dependent optical resolution
     /*! The optical resolution imposes an upper limit on the value
      *  that the main resolution for this document source can take.

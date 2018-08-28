@@ -36,7 +36,7 @@ namespace _drv_ {
     scan_parameters::operator== (const scan_parameters& rhs) const
     {
       return 0 == traits::compare (mem_, rhs.mem_,
-                                   sizeof (mem_) / sizeof (*mem_));
+                                   sizeof (mem_) / sizeof (byte));
     }
 
     scan_parameters::scan_parameters (const byte mem[64])

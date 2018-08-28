@@ -153,6 +153,12 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
         {
           sp = make_shared< DS_16x0 > (cnx);
         }
+      else if (  info.product_name () == "ES-50"
+              || info.product_name () == "ES-60W"
+              )
+        {
+          sp = make_shared< ES_50 > (cnx);
+        }
       else if (   info.product_name () == "PID 08BC"
                || info.product_name () == "PID 08CC"
                || info.product_name () == "PID 08CE"
