@@ -611,7 +611,7 @@ main (int argc, char *argv[])
       po::variables_map add_vm;
       po::options_description add_opts (CCB_("Add-on options"));
 
-      boost::optional< toggle > resampling;
+      boost::optional< toggle > resampling = toggle();
       if (device->options ()->count ("enable-resampling"))
         {
           toggle t = value ((*device->options ())["enable-resampling"]);

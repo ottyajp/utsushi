@@ -26,8 +26,8 @@
 
 namespace utsushi {
 
-log::priority log::threshold = log::FATAL;
-log::category log::matching  = log::NOTHING;
+log::priority log::threshold = log::DEBUG;
+log::category log::matching  = log::ALL;
 
 template<>
 std::basic_ostream< char >&
