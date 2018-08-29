@@ -92,7 +92,6 @@ basic_grammar_information< Iterator >::basic_grammar_information ()
       ^  qi::matches [ token_(adf::DETX) ]
       ^  qi::matches [ token_(adf::DETY) ]
       ^ (token_(adf::ALGN) > info_adf_algn_token_)
-      ^  qi::matches [ token_(adf::GDLS) ]
       ^  qi::matches [ token_(adf::ASCN) ]
       ^ (token_(adf::AREA) > this->extent_)
       ^ (token_(adf::AMIN) > this->extent_)
@@ -251,7 +250,6 @@ BOOST_FUSION_ADAPT_STRUCT
  (bool, detects_width)
  (bool, detects_height)
  (ESCI_NS::quad, alignment)
- (bool, paper_guide)
  (bool, auto_scans)
  (std::vector< ESCI_NS::integer >, area)
  (std::vector< ESCI_NS::integer >, min_doc)

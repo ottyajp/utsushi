@@ -358,6 +358,7 @@ capabilities::double_feed () const
 
   bool dfl1 (std::count (adf->flags->begin (), adf->flags->end (), DFL1));
   bool dfl2 (std::count (adf->flags->begin (), adf->flags->end (), DFL2));
+  bool dfl3 (std::count (adf->flags->begin (), adf->flags->end (), DFL3));
   bool sdf  (std::count (adf->flags->begin (), adf->flags->end (), SDF ));
   bool spp  (std::count (adf->flags->begin (), adf->flags->end (), SPP ));
 
@@ -387,7 +388,7 @@ capabilities::double_feed () const
 
       return s;
     }
-  if (dfl2)
+  if (dfl2 || dfl3)
     {
       /*! \todo Determine whether this is a F/W bug or not.  If not,
        *        figure out how to deal with it.  The constraint can

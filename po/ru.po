@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: utsushi 0.14.0\n"
 "Report-Msgid-Bugs-To: linux-scanner@epson.jp\n"
-"POT-Creation-Date: 2018-07-02 13:22+0900\n"
+"POT-Creation-Date: 2018-07-26 08:04+0900\n"
 "PO-Revision-Date: 2016-02-24 09:02+0900\n"
 "Last-Translator: SEIKO EPSON CORPORATION <linux-scanner@epson.jp>\n"
 "Language-Team: Russian\n"
@@ -263,24 +263,24 @@ msgstr "Устройство занято"
 
 #: drivers/esci/extended-scanner.cpp:121
 #: drivers/esci/grammar-capabilities.cpp:260
-#: drivers/esci/grammar-capabilities.cpp:423
+#: drivers/esci/grammar-capabilities.cpp:424
 msgid "None"
 msgstr "Нет"
 
 #: drivers/esci/extended-scanner.cpp:326
-#: drivers/esci/grammar-capabilities.cpp:688 gtkmm/dialog.cpp:794
+#: drivers/esci/grammar-capabilities.cpp:689 gtkmm/dialog.cpp:794
 #: sane/handle.cpp:588 src/scan-cli.cpp:664
 msgid "Monochrome"
 msgstr "Монохромный"
 
 #: drivers/esci/extended-scanner.cpp:327
-#: drivers/esci/grammar-capabilities.cpp:689 gtkmm/dialog.cpp:795
+#: drivers/esci/grammar-capabilities.cpp:690 gtkmm/dialog.cpp:795
 #: sane/handle.cpp:589 src/scan-cli.cpp:665
 msgid "Grayscale"
 msgstr "Оттенки серого"
 
 #: drivers/esci/extended-scanner.cpp:328
-#: drivers/esci/grammar-capabilities.cpp:686 drivers/esci/scanner.cpp:327
+#: drivers/esci/grammar-capabilities.cpp:687 drivers/esci/scanner.cpp:329
 #: gtkmm/dialog.cpp:796 sane/handle.cpp:590 src/scan-cli.cpp:666
 msgid "Color"
 msgstr "Ц&ветное"
@@ -311,56 +311,56 @@ msgstr "Белая"
 msgid "Black"
 msgstr "Черная"
 
-#: drivers/esci/grammar-capabilities.cpp:368
-#: drivers/esci/grammar-capabilities.cpp:383
+#: drivers/esci/grammar-capabilities.cpp:369
+#: drivers/esci/grammar-capabilities.cpp:384
 msgid "Off"
 msgstr "Выкл"
 
-#: drivers/esci/grammar-capabilities.cpp:369
+#: drivers/esci/grammar-capabilities.cpp:370
 msgid "Normal"
 msgstr "Нормальный"
 
-#: drivers/esci/grammar-capabilities.cpp:370
+#: drivers/esci/grammar-capabilities.cpp:371
 msgid "Thin"
 msgstr "тонкая"
 
-#: drivers/esci/grammar-capabilities.cpp:384
+#: drivers/esci/grammar-capabilities.cpp:385
 msgid "On"
 msgstr ""
 
-#: drivers/esci/grammar-capabilities.cpp:385
+#: drivers/esci/grammar-capabilities.cpp:386
 msgid "Paper Protection"
 msgstr ""
 
-#: drivers/esci/grammar-capabilities.cpp:473
+#: drivers/esci/grammar-capabilities.cpp:474
 msgid "Red"
 msgstr "Красный"
 
-#: drivers/esci/grammar-capabilities.cpp:474
+#: drivers/esci/grammar-capabilities.cpp:475
 msgid "Green"
 msgstr "Зеленый"
 
-#: drivers/esci/grammar-capabilities.cpp:475
+#: drivers/esci/grammar-capabilities.cpp:476
 msgid "Blue"
 msgstr "Синий"
 
-#: drivers/esci/scanner.cpp:324
+#: drivers/esci/scanner.cpp:326
 msgid "ADF - Double-sided"
 msgstr "ADF - двусторонний"
 
-#: drivers/esci/scanner.cpp:325
+#: drivers/esci/scanner.cpp:327
 msgid "ADF - Single-sided"
 msgstr "ADF - односторонний"
 
-#: drivers/esci/scanner.cpp:326
+#: drivers/esci/scanner.cpp:328
 msgid "Black & White"
 msgstr "Черно-белый"
 
-#: drivers/esci/scanner.cpp:328
+#: drivers/esci/scanner.cpp:330
 msgid "Mode"
 msgstr "Режим"
 
-#: drivers/esci/scanner.cpp:329
+#: drivers/esci/scanner.cpp:331
 msgid "Text/Line Art"
 msgstr "Текст/штриховой рисунок"
 
