@@ -97,6 +97,7 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
                || info.product_name () == "DS-360W"
                || info.product_name () == "ES-200"
                || info.product_name () == "ES-300W"
+               || info.product_name () == "ES-300WR"
                )
         {
           sp = make_shared< DS_3x0 > (cnx);
@@ -142,6 +143,8 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
                || info.product_name () == "DS-535"
                || info.product_name () == "DS-775"
                || info.product_name () == "DS-575W"
+               || info.product_name () == "FF-680W"
+               || info.product_name () == "ES-500WR"
                )
         {
           sp = make_shared< DS_530_570W > (cnx);
@@ -152,12 +155,6 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
                )
         {
           sp = make_shared< DS_16x0 > (cnx);
-        }
-      else if (  info.product_name () == "ES-50"
-              || info.product_name () == "ES-60W"
-              )
-        {
-          sp = make_shared< ES_50 > (cnx);
         }
       else if (   info.product_name () == "PID 08BC"
                || info.product_name () == "PID 08CC"
@@ -243,6 +240,11 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
               )
         {
           sp = make_shared< PX_M8xxFX > (cnx);
+        }
+      else if (   info.product_name () == "PID 114D"
+              )
+        {
+          sp = make_shared< L5xxx > (cnx);
         }
       else
         {

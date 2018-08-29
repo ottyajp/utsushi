@@ -102,7 +102,7 @@ DERIVED_COMPOUND_(compound_scanner, EP_81xx,
 DERIVED_COMPOUND_(compound_scanner, PX_M8xxFX,
                   void configure ();
 );
-DERIVED_COMPOUND_(compound_scanner, ES_50,
+DERIVED_COMPOUND_(compound_scanner, L5xxx,
                   void configure ();
 );
 
