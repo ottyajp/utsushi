@@ -4,21 +4,25 @@ NEWS -- an overview of user-visible changes with each release
 utsushi-0.45.0                                            (2018-07-26)
 ----------------------------------------------------------------------
  * adds driver support for new models
+ ? removes work-in-progress support for the ES-50 and ES-60W
  
 ----------------------------------------------------------------------
 utsushi-0.44.0                                            (2018-07-25)
 ----------------------------------------------------------------------
+ ! never released to the general public
  * adds driver support for new models
  
 ----------------------------------------------------------------------
 utsushi-0.43.0                                            (2018-07-06)
 ----------------------------------------------------------------------
+ ! never released to the general public
  * adds driver support for new models
  
 ----------------------------------------------------------------------
 utsushi-0.42.2                                            (2018-06-22)
 ----------------------------------------------------------------------
  * fixes build for fedora 28 bug
+ ? leaks work-in-progress support for the ES-50 and ES-60W
  
 ----------------------------------------------------------------------
 utsushi-0.42.0                                            (2018-06-06)
