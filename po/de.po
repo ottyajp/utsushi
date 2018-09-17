@@ -550,7 +550,7 @@ msgid "Grayscale"
 msgstr "Graustufen"
 
 #: drivers/esci/extended-scanner.cpp:328
-#: drivers/esci/grammar-capabilities.cpp:687 drivers/esci/scanner.cpp:329
+#: drivers/esci/grammar-capabilities.cpp:687 drivers/esci/scanner.cpp:337
 #: gtkmm/dialog.cpp:796 sane/handle.cpp:590 src/scan-cli.cpp:666
 msgid "Color"
 msgstr "Farbe"
@@ -687,23 +687,23 @@ msgstr "Blau"
 msgid "JPEG"
 msgstr "JPEG"
 
-#: drivers/esci/scanner.cpp:326
+#: drivers/esci/scanner.cpp:334
 msgid "ADF - Double-sided"
 msgstr "ADF-Doppelseitig"
 
-#: drivers/esci/scanner.cpp:327
+#: drivers/esci/scanner.cpp:335
 msgid "ADF - Single-sided"
 msgstr "ADF-Einseitig"
 
-#: drivers/esci/scanner.cpp:328
+#: drivers/esci/scanner.cpp:336
 msgid "Black & White"
 msgstr "Schwarzweiß"
 
-#: drivers/esci/scanner.cpp:330
+#: drivers/esci/scanner.cpp:338
 msgid "Mode"
 msgstr "Modus"
 
-#: drivers/esci/scanner.cpp:331
+#: drivers/esci/scanner.cpp:339
 msgid "Text/Line Art"
 msgstr "Text/Strichzeichnung"
 
