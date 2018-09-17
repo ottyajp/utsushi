@@ -691,6 +691,12 @@
 :status    :good
 :comment   "PX-M8xxFX?"
 
+:model     "PID 1149"
+:interface "USB"
+:usbid     "0x04b8" "0x1149"
+:status    :good
+:comment   "WF-37xx?"
+
 :model     "PID 114A"
 :interface "USB"
 :usbid     "0x04b8" "0x114a"
@@ -712,5 +718,23 @@
 :model     "PID 114D"
 :interface "USB"
 :usbid     "0x04b8" "0x114d"
+:status    :good
+:comment   "L5xxx"
+
+:model     "PID 114F"
+:interface "USB"
+:usbid     "0x04b8" "0x114f"
+:status    :good
+:comment   "L5xxx"
+
+:model     "PID 1150"
+:interface "USB"
+:usbid     "0x04b8" "0x1150"
+:status    :good
+:comment   "L5xxx"
+
+:model     "PID 1151"
+:interface "USB"
+:usbid     "0x04b8" "0x1151"
 :status    :good
 :comment   "L5xxx"
