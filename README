@@ -60,6 +60,8 @@ USING THE SOFTWARE
     At present, at least the following EPSON devices are supported:
 
       - DS-40
+      - DS-70
+      - DS-80W
       - DS-410
       - DS-510
       - DS-520
@@ -81,6 +83,8 @@ USING THE SOFTWARE
       - EP-10VA Series
       - EP-808A Series
       - EP-978A3 Series
+      - ES-50
+      - ES-60W
       - ES-300WR
       - ES-400
       - ES-500WR
