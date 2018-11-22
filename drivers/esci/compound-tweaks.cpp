@@ -1670,6 +1670,76 @@ WF_37xx::configure ()
   descriptors_["enable-resampling"]->read_only (true);
 }
 
+ES_50::ES_50 (const connexion::ptr& cnx)
+  : compound_scanner (cnx)
+{
+  information&  info (const_cast< information& > (info_));
+  capabilities& caps (const_cast< capabilities& > (caps_));
+  parameters&   defs (const_cast< parameters& > (defs_));
+
+  // Both resolution settings need to be identical
+  //caps.rss = boost::none;
+
+  // Disable long paper support
+  if (info.adf)
+    {
+      info.adf->max_doc = info.adf->area;
+    }
+
+  if (HAVE_MAGICK)              /* enable resampling */
+    {
+      constraint::ptr res (from< range > ()
+                           -> bounds (50, 600)
+                           -> default_value (*defs.rsm));
+      const_cast< constraint::ptr& > (adf_res_x_) = res;
+      if (caps.rss)
+        {
+          const_cast< constraint::ptr& > (adf_res_y_) = res;
+        }
+    }
+
+  // Assume people prefer brighter colors over B/W
+  defs.col = code_token::parameter::col::C024;
+  defs.gmm = code_token::parameter::gmm::UG18;
+
+  // Boost USB I/O throughput
+  defs.bsz = 256 * 1024;
+
+  // Color correction parameters
+
+  vector< double, 3 >& exp
+    (const_cast< vector< double, 3 >& > (gamma_exponent_));
+
+  exp[0] = 1.017;
+  exp[1] = 0.993;
+  exp[2] = 0.990;
+
+  matrix< double, 3 >& mat
+    (const_cast< matrix< double, 3 >& > (profile_matrix_));
+
+  mat[0][0] =  1.0383;
+  mat[0][1] = -0.0021;
+  mat[0][2] = -0.0362;
+  mat[1][0] =  0.0046;
+  mat[1][1] =  1.0576;
+  mat[1][2] = -0.0622;
+  mat[2][0] =  0.0235;
+  mat[2][1] = -0.2396;
+  mat[2][2] =  1.2161;
+
+  read_back_ = false;           // see #1061
+}
+
+void
+ES_50::configure ()
+{
+  compound_scanner::configure ();
+
+  // FIXME disable workaround for limitations mentioned in #1098
+  descriptors_["enable-resampling"]->active (false);
+  descriptors_["enable-resampling"]->read_only (true);
+}
+
 }       // namespace esci
 }       // namespace _drv_
 }       // namespace utsushi

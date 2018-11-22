@@ -115,7 +115,9 @@ basic_grammar< Iterator >::basic_grammar ()
 
   status_rule_ %=
     skip_rule_
-    > -(  *((token_(info::ERR) > err_rule_)      > skip_rule_)
+    > -( 
+        - ((token_(info::TYP) > typ_token_)     > skip_rule_)
+        ^  (*((token_(info::ERR) > err_rule_)      > skip_rule_))
         ^  ((token_(info::NRD) > nrd_token_)     > skip_rule_)
         ^  ((token_(info::PST) > pst_rule_)      > skip_rule_)
         ^  ((token_(info::PEN) > pen_rule_)      > skip_rule_)
@@ -317,6 +319,7 @@ BOOST_FUSION_ADAPT_STRUCT
 
 BOOST_FUSION_ADAPT_STRUCT
 (ESCI_NS::status,
+ (boost::optional< ESCI_NS::quad >, typ)
  (std::vector< ESCI_NS::status::error >, err)
  (boost::optional< ESCI_NS::quad >, nrd)
  (boost::optional< ESCI_NS::status::image >, pst)

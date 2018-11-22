@@ -119,6 +119,7 @@ struct information
     boost::optional< quad > duplex_passes;
     quad doc_order;
     bool prefeeds;
+    bool paper_guide;
     bool auto_scans;
     std::vector< integer > min_doc;
     std::vector< integer > max_doc;

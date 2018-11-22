@@ -254,6 +254,14 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
         {
           sp = make_shared< WF_37xx > (cnx);
         }
+      else if (  info.product_name () == "ES-50"
+              || info.product_name () == "ES-60W"
+              || info.product_name () == "DS-70"
+              || info.product_name () == "DS-80W"
+              )
+        {
+          sp = make_shared< ES_50 > (cnx);
+        }
       else
         {
           sp = make_shared< compound_scanner > (cnx);

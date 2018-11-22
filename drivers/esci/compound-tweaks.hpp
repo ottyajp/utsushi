@@ -108,6 +108,9 @@ DERIVED_COMPOUND_(compound_scanner, L5xxx,
 DERIVED_COMPOUND_(compound_scanner, WF_37xx,
                   void configure ();
 );
+DERIVED_COMPOUND_(compound_scanner, ES_50,
+                  void configure ();
+);
 
 }       // namespace esci
 }       // namespace _drv_
