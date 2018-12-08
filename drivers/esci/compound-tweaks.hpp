@@ -111,7 +111,9 @@ DERIVED_COMPOUND_(compound_scanner, WF_37xx,
 DERIVED_COMPOUND_(compound_scanner, ES_50,
                   void configure ();
 );
-
+DERIVED_COMPOUND_(compound_scanner, XP21xx,
+                  void configure ();
+);
 }       // namespace esci
 }       // namespace _drv_
 }       // namespace utsushi

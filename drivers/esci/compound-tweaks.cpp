@@ -1740,6 +1740,63 @@ ES_50::configure ()
   descriptors_["enable-resampling"]->read_only (true);
 }
 
+XP21xx::XP21xx (const connexion::ptr& cnx)
+  : compound_scanner (cnx)
+{
+  capabilities& caps (const_cast< capabilities& > (caps_));
+  parameters&   defs (const_cast< parameters& > (defs_));
+
+  if (HAVE_MAGICK)              /* enable resampling */
+    {
+      constraint::ptr fb_res (from< range > ()
+                              -> bounds (50, 1200)
+                              -> default_value (*defs.rsm));
+      const_cast< constraint::ptr& > (fb_res_x_) = fb_res;
+      if (caps.rss)
+        {
+          const_cast< constraint::ptr& > (fb_res_y_) = fb_res;
+        }
+    }
+
+  // Assume people prefer brighter colors over B/W
+  defs.col = code_token::parameter::col::C024;
+  defs.gmm = code_token::parameter::gmm::UG18;
+
+  // Boost USB I/O throughput
+  defs.bsz = 1024 * 1024;
+
+  // Color correction parameters
+
+  vector< double, 3 >& exp
+    (const_cast< vector< double, 3 >& > (gamma_exponent_));
+
+  exp[0] = 1.006;
+  exp[1] = 0.995;
+  exp[2] = 0.999;
+
+  matrix< double, 3 >& mat
+    (const_cast< matrix< double, 3 >& > (profile_matrix_));
+
+  mat[0][0] =  1.0027;
+  mat[0][1] =  0.0005;
+  mat[0][2] = -0.0032;
+  mat[1][0] =  0.0044;
+  mat[1][1] =  1.0214;
+  mat[1][2] = -0.0258;
+  mat[2][0] =  0.0048;
+  mat[2][1] = -0.0624;
+  mat[2][2] =  1.0576;
+}
+
+void
+XP21xx::configure ()
+{
+  compound_scanner::configure ();
+
+  descriptors_["enable-resampling"]->active (false);
+  descriptors_["enable-resampling"]->read_only (true);
+}
+
 }       // namespace esci
 }       // namespace _drv_
 }       // namespace utsushi

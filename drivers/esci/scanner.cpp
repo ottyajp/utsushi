@@ -208,9 +208,12 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
 	    || info.product_name () == "PID 112A"
             || info.product_name () == "PID 1130"
             || info.product_name () == "PID 1135"
-	    || info.product_name () == "PID 1139"
-	    || info.product_name () == "PID 113A"
-      || info.product_name () == "PID 114A"
+	          || info.product_name () == "PID 1139"
+	          || info.product_name () == "PID 113A"
+            || info.product_name () == "PID 114A"
+            || info.product_name () == "PID 1138"
+	          || info.product_name () == "PID 1136"
+            || info.product_name () == "PID 1137"
 	    )
         {
           sp = make_shared< L61x0 > (cnx);
@@ -261,6 +264,11 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
               )
         {
           sp = make_shared< ES_50 > (cnx);
+        }
+      else if (info.product_name () == "PID 114E"
+	          )
+        {
+          sp = make_shared< XP21xx > (cnx);
         }
       else
         {
