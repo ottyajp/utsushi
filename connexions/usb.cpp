@@ -99,7 +99,11 @@ using std::runtime_error;
             BOOST_THROW_EXCEPTION
               (runtime_error ("unable to initialise USB support"));
           }
+#if LIBUSB_API_VERSION >= 0x01000106
+        libusb_set_option(ctx_, LIBUSB_OPTION_LOG_LEVEL, 3);
+#else
         libusb_set_debug (ctx_, 3);
+#endif
       }
 
     libusb_device **haystack;
