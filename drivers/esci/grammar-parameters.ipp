@@ -68,9 +68,9 @@ basic_grammar_parameters< Iterator >::basic_grammar_parameters ()
   using namespace code_token::parameter;
 
   parameters_rule_ %=
-    (  (token_(ADF) > (qi::skip (token_(ADF)) [ *parm_adf_token_ ]))
-     ^ (token_(TPU) > (qi::skip (token_(TPU)) [ *parm_tpu_token_ ]))
-     ^ (token_(FB ) > (qi::skip (token_(FB )) [ *parm_fb_token_  ]))
+    (  (token_(ADF) > (qi::skip (token_(ADF)) [ *parm_adf_token_ ] | this->numeric_))
+     ^ (token_(TPU) > (qi::skip (token_(TPU)) [ *parm_tpu_token_ ] | this->numeric_))
+     ^ (token_(FB ) > (qi::skip (token_(FB )) [ *parm_fb_token_  ] | this->numeric_))
      ^ (token_(COL) >  parm_col_token_)
      ^ (token_(FMT) >  parm_fmt_token_)
      ^ (token_(JPG) >  this->decimal_)
