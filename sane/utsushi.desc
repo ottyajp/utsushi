@@ -152,10 +152,20 @@
 :status    :good
 :comment   "USB product ID one of 0x0160, 0x0166, 0x016c or 0x016e"
 
+:model     "ES-55R"
+:interface "USB"
+:status    :good
+:comment   "USB product ID one of 0x016d or 0x16f"
+
 :model     "ES-60W"
 :interface "USB"
 :status    :good
 :comment   "USB product ID one of 0x0160, 0x0166, 0x016c or 0x016e"
+
+:model     "ES-65WR"
+:interface "USB"
+:status    :good
+:comment   "USB product ID one of 0x016d or 0x16f"
 
 :model     "ES-400"
 :interface "USB"
@@ -440,6 +450,18 @@
 :usbid     "0x04b8" "0x016b"
 :status    :good
 :comment   "probably a FastFoto 680W, could be a WorkForce ES-300WR or ES-500WR"
+
+:model     "PID 016D"
+:interface "USB"
+:usbid     "0x04b8" "0x016D"
+:status    :good
+:comment   "propably one of ES-55R, ES-65WR"
+
+:model     "PID 016F"
+:interface "USB"
+:usbid     "0x04b8" "0x016F"
+:status    :good
+:comment   "propably one of ES-55R, ES-65WR"
 
 :model     "PID 0176"
 :interface "USB"
