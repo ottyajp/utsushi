@@ -1,5 +1,6 @@
 //  memory.cpp -- unit tests for the memory device implementations
 //  Copyright (C) 2012, 2015  SEIKO EPSON CORPORATION
+//  Copyright (C) 2019  Olaf Meeuwissen
 //
 //  License: GPL-3.0+
 //  Author : EPSON AVASYS CORPORATION
@@ -145,7 +146,7 @@ constant_octets (octet value)
   const streamsize margin = 10;
   const octet nul = 0x00;
   traits::assign (buffer, size, nul);
-  BOOST_MESSAGE ("value: " << value );
+  BOOST_TEST_MESSAGE ("value: " << value );
 
   setmem_idevice dev (shared_ptr<setmem_idevice::generator>
                       (new const_generator (value)));

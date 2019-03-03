@@ -1,5 +1,6 @@
 //  backend.cpp -- unit tests for the SANE utsushi backend
 //  Copyright (C) 2012, 2013, 2015  SEIKO EPSON CORPORATION
+//  Copyright (C) 2019  Olaf Meeuwissen
 //
 //  License: GPL-3.0+
 //  Author : EPSON AVASYS CORPORATION
@@ -755,8 +756,8 @@ drop_test_suite (const std::string& name)
   but::traverse_test_tree (tuid, tcc);
 
   master.remove (tuid);
-  BOOST_MESSAGE ("Disabled \"" << name << "\" test suite for lack of "
-                 "a mock device (" << tcc.p_count << " test cases)");
+  BOOST_TEST_MESSAGE ("Disabled \"" << name << "\" test suite for lack of "
+                      "a mock device (" << tcc.p_count << " test cases)");
 }
 
 bool
@@ -766,7 +767,7 @@ init_test_runner ()
 
   but::master_test_suite_t& master (but::framework::master_test_suite ());
 
-  BOOST_MESSAGE ("Initializing \"" << master.p_name << "\" test suite");
+  BOOST_TEST_MESSAGE ("Initializing \"" << master.p_name << "\" test suite");
 
   utsushi::monitor mon;    // to discover devices
 
