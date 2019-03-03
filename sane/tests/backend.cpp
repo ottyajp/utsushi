@@ -27,6 +27,10 @@
 #include <cstring>
 
 #include <boost/test/unit_test.hpp>
+#if 105800 <= BOOST_VERSION
+#include <boost/test/tree/test_case_counter.hpp>
+#include <boost/test/tree/traverse.hpp>
+#endif
 #include <boost/preprocessor/cat.hpp>
 
 #include <ltdl.h>
