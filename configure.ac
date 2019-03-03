@@ -135,14 +135,6 @@ AC_ARG_WITH(sane-confdir,
   [],
   [with_sane_confdir=guess])
 
-AC_ARG_WITH(included-boost,
-  AS_HELP_STRING([--with-included-boost],
-     [use the Boost sources included here, if any @<:@check@:>@.
-      Directory locations for other --with-boost-* options will be
-      overridden.]),
-  [],
-  [with_included_boost=check])
-
 AC_ARG_ENABLE(udev-config,
   AS_HELP_STRING([--enable-udev-config],
     [integrate udev activated device set up @<:@yes@:>@.
@@ -159,6 +151,14 @@ AC_ARG_WITH(udev-confdir,
      where your udev configuration directory is.]),
   [],
   [with_udev_confdir=guess])
+
+AC_ARG_WITH(included-boost,
+  AS_HELP_STRING([--with-included-boost],
+     [use the Boost sources included here, if any @<:@check@:>@.
+      Directory locations for other --with-boost-* options will be
+      overridden.]),
+  [],
+  [with_included_boost=check])
 AC_ARG_WITH(download-dir,
   AS_HELP_STRING([--with-download-dir@<:@=ABS_DIR@:>@],
     [where to cache upstream source downloads @<:@/path/to/upstream/downloads@:>@.
