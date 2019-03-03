@@ -159,6 +159,9 @@ case "$PKG_MGR" in
             #  Needed to build libboost-iostreams
             pkg_list="$pkg_list libz-dev"
             pkg_list="$pkg_list libbz2-dev"
+            #  Needed by ./tools/include-boost-src
+            has wget    || pkg_list="$pkg_list wget"
+            pkg_list="$pkg_list ca-certificates"
         fi
         #  Needed for device detection
         pkg_list="$pkg_list libudev-dev"
