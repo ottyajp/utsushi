@@ -1,6 +1,6 @@
 ##  Makefile.am -- an automake template for Makefile.in
 ##  Copyright (C) 2012-2014  SEIKO EPSON CORPORATION
-##  Copyright (C) 2013, 2015  Olaf Meeuwissen
+##  Copyright (C) 2013, 2015, 2019  Olaf Meeuwissen
 ##
 ##  License: GPL-3.0+
 ##  Author : EPSON AVASYS CORPORATION
@@ -39,8 +39,9 @@ endif
 
 LDADD  = ../libflt-all.la
 LDADD += ../../lib/libutsushi.la $(LIBUTSUSHI_LIBS)
-##  FIXME: drop once usb connexion is a proper plugin
+##  FIXME: drop when connexions have been turned into proper plugins
 LDADD += ../../connexions/libcnx-usb.la
+LDADD += ../../connexions/libcnx-hexdump.la
 
 if have_libjpeg
 check_PROGRAMS    += jpeg.utr

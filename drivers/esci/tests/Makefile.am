@@ -1,5 +1,6 @@
 ##  Makefile.am -- an automake template for Makefile.in
 ##  Copyright (C) 2012-2015  SEIKO EPSON CORPORATION
+##  Copyright (C) 2019  Olaf Meeuwissen
 ##
 ##  License: GPL-3.0+
 ##  Author : EPSON AVASYS CORPORATION
@@ -39,16 +40,22 @@ AM_CPPFLAGS += -DESCI_GRAMMAR_TRACE=1
 AM_LDFLAGS  += $(BOOST_LDFLAGS)
 
 LDADD = ../libdrv-esci.la $(LIBUTSUSHI_LIBS)
-grammar_formats_utr_LDADD   = $(LDADD) $(BOOST_FILESYSTEM_LIB)
-grammar_utr_LDADD           = $(LDADD) $(BOOST_FILESYSTEM_LIB)
-## FIXME: remove once usb connexion is a proper plugin
-setter_utr_LDADD    = $(LDADD) ../../../connexions/libcnx-usb.la
+grammar_formats_utr_LDADD    = $(LDADD) $(BOOST_FILESYSTEM_LIB)
+grammar_utr_LDADD            = $(LDADD) $(BOOST_FILESYSTEM_LIB)
+udev_rules_utr_LDADD         = $(BOOST_UNIT_TEST_FRAMEWORK_LIB)
+udev_rules_utr_LDADD        += $(BOOST_FILESYSTEM_LIB)
+udev_rules_utr_LDADD        += $(BOOST_REGEX_LIB)
+## FIXME: remove when connexions are turned into proper plugins
+setter_utr_LDADD             = $(LDADD)
+setter_utr_LDADD            += ../../../connexions/libcnx-usb.la
+setter_utr_LDADD            += ../../../connexions/libcnx-hexdump.la
 grammar_formats_utr_LDADD   += ../../../connexions/libcnx-usb.la
+grammar_formats_utr_LDADD   += ../../../connexions/libcnx-hexdump.la
 grammar_utr_LDADD           += ../../../connexions/libcnx-usb.la
-grammar_mechanics_utr_LDADD  = $(LDADD) ../../../connexions/libcnx-usb.la
-udev_rules_utr_LDADD  = $(BOOST_UNIT_TEST_FRAMEWORK_LIB)
-udev_rules_utr_LDADD += $(BOOST_FILESYSTEM_LIB)
-udev_rules_utr_LDADD += $(BOOST_REGEX_LIB)
+grammar_utr_LDADD           += ../../../connexions/libcnx-hexdump.la
+grammar_mechanics_utr_LDADD  = $(LDADD)
+grammar_mechanics_utr_LDADD += ../../../connexions/libcnx-usb.la
+grammar_mechanics_utr_LDADD += ../../../connexions/libcnx-hexdump.la
 
 endif
 

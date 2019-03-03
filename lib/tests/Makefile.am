@@ -1,6 +1,6 @@
 ##  Makefile.am -- an automake template for Makefile.in
 ##  Copyright (C) 2012, 2013  SEIKO EPSON CORPORATION
-##  Copyright (C) 2015  Olaf Meeuwissen
+##  Copyright (C) 2015, 2019  Olaf Meeuwissen
 ##
 ##  License: GPL-3.0+
 ##  Author : EPSON AVASYS CORPORATION
@@ -62,8 +62,9 @@ log_no_check_utr_CPPFLAGS += -DUTSUSHI_LOG_ARGUMENT_COUNT_CHECK_ENABLED=false
 AM_CPPFLAGS += -DLOCALEDIR="\"$(localedir)\""
 
 LDADD  = ../libutsushi.la $(LIBUTSUSHI_LIBS)
-##  FIXME: drop once usb connexion is a proper plugin
+##  FIXME: drop when connexions have been turned into proper plugins
 LDADD += ../../connexions/libcnx-usb.la
+LDADD += ../../connexions/libcnx-hexdump.la
 
 if have_libtiff
 test_runners      += tiff.utr
