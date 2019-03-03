@@ -1,6 +1,6 @@
 #! /bin/sh
 #  install-deps -- needed for developer and/or maintainer builds
-#  Copyright (C) 2013, 2015  Olaf Meeuwissen
+#  Copyright (C) 2013, 2015, 2019  Olaf Meeuwissen
 #  Copyright (C) 2012, 2016  EPSON AVASYS CORPORATION
 #
 #  License: GPL-3.0+

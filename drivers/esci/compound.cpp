@@ -1,5 +1,6 @@
 //  compound.cpp -- protocol variant command base class implementation
 //  Copyright (C) 2012-2015  SEIKO EPSON CORPORATION
+//  Copyright (C) 2019  Olaf Meeuwissen
 //
 //  License: GPL-3.0+
 //  Author : EPSON AVASYS CORPORATION

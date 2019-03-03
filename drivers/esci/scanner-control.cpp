@@ -1,5 +1,6 @@
 //  scanner-control.cpp -- make the device do your bidding
 //  Copyright (C) 2012-2015  SEIKO EPSON CORPORATION
+//  Copyright (C) 2019  Olaf Meeuwissen
 //
 //  License: GPL-3.0+
 //  Author : EPSON AVASYS CORPORATION
