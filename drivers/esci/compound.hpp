@@ -30,6 +30,12 @@
 #include "command.hpp"
 #include "grammar.hpp"
 
+#if __cplusplus >= 201103L && !WITH_INCLUDED_BOOST
+#define NS std
+#else
+#define NS boost
+#endif
+
 namespace utsushi {
 namespace _drv_ {
 namespace esci {
@@ -132,10 +138,10 @@ protected:
   parameters      resb_;
   hardware_status stat_;
 
-  reference_wrapper< information >     info_ref_;
-  reference_wrapper< capabilities >    caps_ref_;
-  reference_wrapper< parameters >      parm_ref_;
-  reference_wrapper< hardware_status > stat_ref_;
+  NS::reference_wrapper< information >     info_ref_;
+  NS::reference_wrapper< capabilities >    caps_ref_;
+  NS::reference_wrapper< parameters >      parm_ref_;
+  NS::reference_wrapper< hardware_status > stat_ref_;
 
   //! Collection of per request callbacks, indexed by reply code_token
   std::map< quad, function< void () > > hook_;

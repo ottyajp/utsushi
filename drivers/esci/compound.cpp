@@ -29,12 +29,6 @@
 #include "compound.hpp"
 #include "exception.hpp"
 
-#if __cplusplus >= 201103L
-#define NS std
-#else
-#define NS boost
-#endif
-
 namespace utsushi {
 namespace _drv_ {
 namespace esci {

@@ -155,7 +155,7 @@ scanner_control::operator++ ()
         }
 
       encode_request_block_(request::IMG);
-      dat_ref_ = ref (static_cast< byte_buffer& > (img_dat_));
+      dat_ref_ = NS::ref (static_cast< byte_buffer& > (img_dat_));
       *cnx_ << *this;
     }
   while (acquiring_
