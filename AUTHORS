@@ -11,7 +11,7 @@ EPSON AVASYS CORPORATION <http://avasys.jp/>
           AVASYS CORPORATION.
 
 ----------------------------------------------------------------------
-Olaf Meeuwissen <paddy-hack@member.fsf.org>
+Olaf Meeuwissen
 
   - designed and implemented the initial ESC-I/B protocol commands as
     well as the HAL and USB connexion support.
