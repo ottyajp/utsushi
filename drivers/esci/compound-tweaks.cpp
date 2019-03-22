@@ -657,8 +657,10 @@ PX_Mxxxx::PX_Mxxxx (const connexion::ptr& cnx)
     //
     ("PID 1125",   gamma_exponent_3)
     ("PID 1127",   gamma_exponent_3)
+    ("PID 1152",   gamma_exponent_3)
     //
     ("PID 1126",   gamma_exponent_4)
+    ("PID 1153",   gamma_exponent_4)
     //
     ("PID 1128",   gamma_exponent_5)
     ("PID 113B",   gamma_exponent_5)
@@ -1790,6 +1792,246 @@ XP21xx::XP21xx (const connexion::ptr& cnx)
 
 void
 XP21xx::configure ()
+{
+  compound_scanner::configure ();
+
+  descriptors_["enable-resampling"]->active (false);
+  descriptors_["enable-resampling"]->read_only (true);
+}
+
+LX_10xxx::LX_10xxx (const connexion::ptr& cnx)
+  : compound_scanner (cnx)
+{
+  information&  info (const_cast< information& > (info_));
+  capabilities& caps (const_cast< capabilities& > (caps_));
+  parameters&   defs (const_cast< parameters& > (defs_));
+  
+  // Disable long paper support
+  if (info.adf)
+    {
+      info.adf->max_doc = info.adf->area;
+    }
+
+  if (HAVE_MAGICK)              /* enable resampling */
+    {
+      constraint::ptr fb_res (from< range > ()
+                              -> bounds (50, 1200)
+                              -> default_value (*defs.rsm));
+      constraint::ptr adf_res (from< range > ()
+                               -> bounds (50, 600)
+                               -> default_value (*defs.rsm));
+      const_cast< constraint::ptr& > (fb_res_x_) = fb_res;
+      const_cast< constraint::ptr& > (adf_res_x_) = adf_res;
+      if (caps.rss)
+        {
+          const_cast< constraint::ptr& > (fb_res_y_) = fb_res;
+          const_cast< constraint::ptr& > (adf_res_y_) = adf_res;
+        }
+    }
+
+  // Assume people prefer brighter colors over B/W
+  defs.col = code_token::parameter::col::C024;
+  defs.gmm = code_token::parameter::gmm::UG18;
+
+  // Boost USB I/O throughput
+  defs.bsz = 1024 * 1024;
+
+  // Color correction parameters
+
+  vector< double, 3 >& exp
+    (const_cast< vector< double, 3 >& > (gamma_exponent_));
+
+  exp[0] = 1.008;
+  exp[1] = 0.994;
+  exp[2] = 0.998;
+
+  matrix< double, 3 >& mat
+    (const_cast< matrix< double, 3 >& > (profile_matrix_));
+
+  mat[0][0] =  0.9956;
+  mat[0][1] =  0.0071;
+  mat[0][2] = -0.0027;
+  mat[1][0] =  0.0033;
+  mat[1][1] =  0.9973;
+  mat[1][2] = -0.0006;
+  mat[2][0] =  0.0039;
+  mat[2][1] = -0.0574;
+  mat[2][2] =  1.0535;
+}
+
+void
+LX_10xxx::configure ()
+{
+  compound_scanner::configure ();
+
+  descriptors_["enable-resampling"]->active (false);
+  descriptors_["enable-resampling"]->read_only (true);
+}
+
+EP8xxA::EP8xxA (const connexion::ptr& cnx)
+  : compound_scanner (cnx)
+{
+  capabilities& caps (const_cast< capabilities& > (caps_));
+  parameters&   defs (const_cast< parameters& > (defs_));
+
+  if (HAVE_MAGICK)              /* enable resampling */
+    {
+      constraint::ptr fb_res (from< range > ()
+                              -> bounds (50, 1200)
+                              -> default_value (*defs.rsm));
+      const_cast< constraint::ptr& > (fb_res_x_) = fb_res;
+      if (caps.rss)
+        {
+          const_cast< constraint::ptr& > (fb_res_y_) = fb_res;
+        }
+    }
+
+  // Assume people prefer brighter colors over B/W
+  defs.col = code_token::parameter::col::C024;
+  defs.gmm = code_token::parameter::gmm::UG18;
+
+  // Boost USB I/O throughput
+  defs.bsz = 1024 * 1024;
+
+  // Color correction parameters
+
+  vector< double, 3 >& exp
+    (const_cast< vector< double, 3 >& > (gamma_exponent_));
+
+  exp[0] = 1.010;
+  exp[1] = 0.997;
+  exp[2] = 0.993;
+
+  matrix< double, 3 >& mat
+    (const_cast< matrix< double, 3 >& > (profile_matrix_));
+
+  mat[0][0] =  0.9864;
+  mat[0][1] =  0.0248;
+  mat[0][2] = -0.0112;
+  mat[1][0] =  0.0021;
+  mat[1][1] =  1.0100;
+  mat[1][2] = -0.0121;
+  mat[2][0] =  0.0139;
+  mat[2][1] = -0.1249;
+  mat[2][2] =  1.1110;
+}
+
+void
+EP8xxA::configure ()
+{
+  compound_scanner::configure ();
+
+  descriptors_["enable-resampling"]->active (false);
+  descriptors_["enable-resampling"]->read_only (true);
+}
+
+EP9xxA3::EP9xxA3 (const connexion::ptr& cnx)
+  : compound_scanner (cnx)
+{
+  capabilities& caps (const_cast< capabilities& > (caps_));
+  parameters&   defs (const_cast< parameters& > (defs_));
+
+  if (HAVE_MAGICK)              /* enable resampling */
+    {
+      constraint::ptr fb_res (from< range > ()
+                              -> bounds (50, 1200)
+                              -> default_value (*defs.rsm));
+      const_cast< constraint::ptr& > (fb_res_x_) = fb_res;
+      if (caps.rss)
+        {
+          const_cast< constraint::ptr& > (fb_res_y_) = fb_res;
+        }
+    }
+
+  // Assume people prefer brighter colors over B/W
+  defs.col = code_token::parameter::col::C024;
+  defs.gmm = code_token::parameter::gmm::UG18;
+
+  // Boost USB I/O throughput
+  defs.bsz = 1024 * 1024;
+
+  // Color correction parameters
+
+  vector< double, 3 >& exp
+    (const_cast< vector< double, 3 >& > (gamma_exponent_));
+
+  exp[0] = 1.014;
+  exp[1] = 0.990;
+  exp[2] = 0.997;
+
+  matrix< double, 3 >& mat
+    (const_cast< matrix< double, 3 >& > (profile_matrix_));
+
+  mat[0][0] =  0.9803;
+  mat[0][1] =  0.0341;
+  mat[0][2] = -0.0144;
+  mat[1][0] =  0.0080;
+  mat[1][1] =  1.0308;
+  mat[1][2] = -0.0388;
+  mat[2][0] =  0.0112;
+  mat[2][1] = -0.1296;
+  mat[2][2] =  1.1184;
+}
+
+void
+EP9xxA3::configure ()
+{
+  compound_scanner::configure ();
+
+  descriptors_["enable-resampling"]->active (false);
+  descriptors_["enable-resampling"]->read_only (true);
+}
+
+EP7xxA::EP7xxA (const connexion::ptr& cnx)
+  : compound_scanner (cnx)
+{
+  capabilities& caps (const_cast< capabilities& > (caps_));
+  parameters&   defs (const_cast< parameters& > (defs_));
+
+  if (HAVE_MAGICK)              /* enable resampling */
+    {
+      constraint::ptr fb_res (from< range > ()
+                              -> bounds (50, 1200)
+                              -> default_value (*defs.rsm));
+      const_cast< constraint::ptr& > (fb_res_x_) = fb_res;
+      if (caps.rss)
+        {
+          const_cast< constraint::ptr& > (fb_res_y_) = fb_res;
+        }
+    }
+
+  // Assume people prefer brighter colors over B/W
+  defs.col = code_token::parameter::col::C024;
+  defs.gmm = code_token::parameter::gmm::UG18;
+
+  // Boost USB I/O throughput
+  defs.bsz = 1024 * 1024;
+
+  // Color correction parameters
+
+  vector< double, 3 >& exp
+    (const_cast< vector< double, 3 >& > (gamma_exponent_));
+
+  exp[0] = 1.006;
+  exp[1] = 0.995;
+  exp[2] = 0.999;
+
+  matrix< double, 3 >& mat
+    (const_cast< matrix< double, 3 >& > (profile_matrix_));
+
+  mat[0][0] =  1.0027;
+  mat[0][1] =  0.0005;
+  mat[0][2] = -0.0032;
+  mat[1][0] =  0.0044;
+  mat[1][1] =  1.0214;
+  mat[1][2] = -0.0258;
+  mat[2][0] =  0.0048;
+  mat[2][1] = -0.0624;
+  mat[2][2] =  1.0576;
+}
+
+void
+EP7xxA::configure ()
 {
   compound_scanner::configure ();
 
