@@ -155,7 +155,7 @@
 :model     "ES-55R"
 :interface "USB"
 :status    :good
-:comment   "USB product ID one of 0x016d or 0x16f"
+:comment   "USB product ID one of 0x016d or 0x016f"
 
 :model     "ES-60W"
 :interface "USB"
@@ -165,7 +165,7 @@
 :model     "ES-65WR"
 :interface "USB"
 :status    :good
-:comment   "USB product ID one of 0x016d or 0x16f"
+:comment   "USB product ID one of 0x016d or 0x016f"
 
 :model     "ES-400"
 :interface "USB"
@@ -453,13 +453,13 @@
 
 :model     "PID 016D"
 :interface "USB"
-:usbid     "0x04b8" "0x016D"
+:usbid     "0x04b8" "0x016d"
 :status    :good
 :comment   "propably one of ES-55R, ES-65WR"
 
 :model     "PID 016F"
 :interface "USB"
-:usbid     "0x04b8" "0x016F"
+:usbid     "0x04b8" "0x016f"
 :status    :good
 :comment   "propably one of ES-55R, ES-65WR"
 
@@ -591,7 +591,7 @@
 :interface "USB"
 :usbid     "0x04b8" "0x1128"
 :status    :good
-:comment   "PX-Mxxx?"
+:comment   "PX-Mxxxx?"
 
 :model     "PID 1129"
 :interface "USB"
@@ -694,7 +694,13 @@
 :interface "USB"
 :usbid     "0x04b8" "0x113b"
 :status    :good
-:comment   "PX-Mxxx?"
+:comment   "PX-Mxxxx?"
+
+:model     "PID 113C"
+:interface "USB"
+:usbid     "0x04b8" "0x113c"
+:status    :good
+:comment   "PX-Mxxxx?"
 
 :model     "PID 113D"
 :interface "USB"
@@ -714,6 +720,11 @@
 :model     "PID 1140"
 :interface "USB"
 :usbid     "0x04b8" "0x1140"
+:status    :good
+
+:model     "PID 1141"
+:interface "USB"
+:usbid     "0x04b8" "0x1141"
 :status    :good
 
 :model     "PID 1142"
