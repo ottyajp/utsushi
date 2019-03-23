@@ -815,3 +815,99 @@
 :usbid     "0x04b8" "0x1151"
 :status    :good
 :comment   "L5xxx"
+
+:model     "PID 1152"
+:interface "USB"
+:usbid     "0x04b8" "0x1152"
+:status    :good
+:comment   "PX-Mxxxx"
+
+:model     "PID 1153"
+:interface "USB"
+:usbid     "0x04b8" "0x1153"
+:status    :good
+:comment   "PX-Mxxxx"
+
+:model     "PID 1154"
+:interface "USB"
+:usbid     "0x04b8" "0x1154"
+:status    :good
+:comment   "L61x0"
+
+:model     "PID 1155"
+:interface "USB"
+:usbid     "0x04b8" "0x1155"
+:status    :good
+:comment   "L61x0"
+
+:model     "PID 1156"
+:interface "USB"
+:usbid     "0x04b8" "0x1156"
+:status    :good
+:comment   "L61x0"
+
+:model     "PID 1157"
+:interface "USB"
+:usbid     "0x04b8" "0x1157"
+:status    :good
+:comment   "L3xxx"
+
+:model     "PID 1158"
+:interface "USB"
+:usbid     "0x04b8" "0x1158"
+:status    :good
+:comment   "L3xxx"
+
+:model     "PID 115A"
+:interface "USB"
+:usbid     "0x04b8" "0x115a"
+:status    :good
+:comment   "EP8xxA"
+
+:model     "PID 115B"
+:interface "USB"
+:usbid     "0x04b8" "0x115b"
+:status    :good
+:comment   "EP9xxA3"
+
+:model     "PID 115C"
+:interface "USB"
+:usbid     "0x04b8" "0x115c"
+:status    :good
+:comment   "EP7xxA"
+
+:model     "PID 115D"
+:interface "USB"
+:usbid     "0x04b8" "0x115c"
+:status    :good
+:comment   "EP9xxA3"
+
+:model     "PID 1160"
+:interface "USB"
+:usbid     "0x04b8" "0x1160"
+:status    :good
+:comment   "L5xxx"
+
+:model     "PID 1161"
+:interface "USB"
+:usbid     "0x04b8" "0x1161"
+:status    :good
+:comment   "LX-10xxx"
+
+:model     "PID 1164"
+:interface "USB"
+:usbid     "0x04b8" "0x1164"
+:status    :good
+:comment   "L61x0"
+
+:model     "PID 1165"
+:interface "USB"
+:usbid     "0x04b8" "0x1165"
+:status    :good
+:comment   "L61x0"
+
+:model     "PID 1166"
+:interface "USB"
+:usbid     "0x04b8" "0x1166"
+:status    :good
+:comment   "L61x0"
