@@ -191,6 +191,7 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
       else if (info.product_name () == "PID 112E"
 	    || info.product_name () == "PID 112F"
 	    || info.product_name () == "PID 1140"
+      || info.product_name () == "PID 1159"
 	    )
         {
           sp = make_shared< PX_M884F > (cnx);
@@ -284,6 +285,7 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
           sp = make_shared< XP21xx > (cnx);
         }
       else if (info.product_name () == "PID 1161"
+            || info.product_name () == "PID 116B"
 	          )
         {
           sp = make_shared< LX_10xxx > (cnx);
