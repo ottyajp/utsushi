@@ -165,7 +165,7 @@ done
 #  Note that configure.ac has a minimal libtool version requirement
 #  and also that --without-sane does not require the patch.
 
-eval `sed -n '/^VERSION=/{ p; q }' $aux_dir/ltmain.sh`
+eval `sed -n '/^VERSION=/{ p; q }' $aux_dir/ltmain.sh | sed 's/ .*"$/"/'`
 case "$VERSION" in
     2.2|2.2.*)     patch=sane/ltmain.sh-2.2.6b.diff ;;
     2.4|2.4.[012]) patch=sane/ltmain.sh-2.4.2.diff ;;
