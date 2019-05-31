@@ -38,6 +38,12 @@ stages:
     when: always
     expire_in: 1 week
 
+#  Make untracked files newer than any repository files (see #72).
+
+.touch: &touch
+  before_script:
+    - git ls-files -z --other | xargs -0 touch
+
 #  Bootstrap, configure and build everything
 
 build:
@@ -52,6 +58,7 @@ build:
 
 check:
   stage: check
+  <<: *touch
   script:
     - make check
   <<: *artifacts
@@ -60,6 +67,7 @@ check:
 
 archive:
   stage: archive
+  <<: *touch
   script:
     - make dist
   artifacts:
