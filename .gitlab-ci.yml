@@ -18,7 +18,10 @@
 #  You ought to have received a copy of the GNU General Public License
 #  along with this package.  If not, see <http://www.gnu.org/licenses/>.
 
-image: "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+variables:
+  SDK_REGISTRY_IMAGE: "$CI_REGISTRY_IMAGE/sdk"
+
+image: "$SDK_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 
 stages:
   - image
@@ -94,9 +97,9 @@ archive:
            | docker login --username "$CI_REGISTRY_USER"
                           --password-stdin "$CI_REGISTRY"
   script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" || true
+    - docker pull "$SDK_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" || true
     - docker build --pull
-                   --cache-from "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+                   --cache-from "$SDK_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
                    --tag "$TAG_NAME" .
     - docker push "$TAG_NAME"
 
@@ -109,7 +112,7 @@ archive:
 image-branch:
   stage: image
   variables:
-    TAG_NAME: "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    TAG_NAME: "$SDK_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   <<: *image-build
   only:
     <<: *image-build-deps
@@ -117,7 +120,7 @@ image-branch:
 image-latest:
   stage: image-latest
   variables:
-    TAG_NAME: "$CI_REGISTRY_IMAGE"
+    TAG_NAME: "$SDK_REGISTRY_IMAGE"
   <<: *image-build
   only:
     refs:
