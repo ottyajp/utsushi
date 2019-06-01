@@ -105,6 +105,7 @@ archive:
 
 .image-build-deps: &image-build-deps
   changes:
+    - .gitlab-ci.yml
     - .dockerignore
     - Dockerfile
     - install-deps
