@@ -459,18 +459,14 @@ add_conf_file (monitor::container_type& devices, const std::string& conffile)
 {
   run_time rt;
   std::string name (rt.conf_file (run_time::sys, conffile));
+
+  if (!exists (name)) return;
+
   std::ifstream ifs (name.c_str ());
 
   if (!ifs.is_open ())
     {
-      if (exists (name))
-        {
-          log::error ("cannot open file: %1%") % name;
-        }
-      else
-        {
-          log::alert ("no such file: %1%") % name;
-        }
+      log::error ("cannot open file: %1%") % name;
       return;
     }
 
