@@ -97,9 +97,12 @@ archive:
            | docker login --username "$CI_REGISTRY_USER"
                           --password-stdin "$CI_REGISTRY"
   script:
-    - docker pull "$SDK_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" || true
+    - docker pull "$SDK_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+             || docker pull "$SDK_REGISTRY_IMAGE"
+             || true
     - docker build --pull
                    --cache-from "$SDK_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+                   --cache-from "$SDK_REGISTRY_IMAGE"
                    --tag "$TAG_NAME" .
     - docker push "$TAG_NAME"
 
