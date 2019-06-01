@@ -26,7 +26,7 @@
 
 namespace utsushi {
 
-log::priority log::threshold = log::DEBUG;
+log::priority log::threshold = log::BRIEF;
 log::category log::matching  = log::ALL;
 
 template<>
