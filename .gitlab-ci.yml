@@ -112,7 +112,7 @@ archive:
 image-branch:
   stage: image
   variables:
-    TAG_NAME: "$SDK_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    TAG_NAME: "$CI_REGISTRY_IMAGE/sdk:$CI_COMMIT_REF_SLUG"
   <<: *image-build
   only:
     <<: *image-build-deps
@@ -120,7 +120,7 @@ image-branch:
 image-latest:
   stage: image-latest
   variables:
-    TAG_NAME: "$SDK_REGISTRY_IMAGE"
+    TAG_NAME: "$CI_REGISTRY_IMAGE/sdk"
   <<: *image-build
   only:
     refs:
