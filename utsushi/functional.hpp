@@ -38,7 +38,7 @@
  *  -# http://wikipedia.org/wiki/C++11
  */
 
-#if __cplusplus >= 201103L && !WITH_INCLUDED_BOOST
+#if __cplusplus >= 201103L
 
 #include <functional>
 #define NAMESPACE std

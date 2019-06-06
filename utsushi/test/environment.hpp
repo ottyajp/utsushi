@@ -30,7 +30,7 @@
 #include <utsushi/functional.hpp>
 #include <utsushi/regex.hpp>
 
-#if __cplusplus >= 201103L && !WITH_INCLUDED_BOOST
+#if __cplusplus >= 201103L
 #define NS(bind) std::bind
 #define NSPH(_1) std::placeholders::_1
 #else

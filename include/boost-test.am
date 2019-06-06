@@ -88,11 +88,4 @@ CLEANFILES += *.gcda ../*.gcda
 CLEANFILES += *.gcov ../*.gcov
 endif
 
-if with_included_boost
-if with_shared_enabled
-TESTS_ENVIRONMENT += \
-	$(LT_MODULE_PATH_VAR)=`cd $(top_builddir) && pwd`/upstream/boost/lib
-endif
-endif
-
 endif # enable_boost_unit_test_framework

@@ -21,7 +21,7 @@
 #ifndef utsushi_exception_hpp_
 #define utsushi_exception_hpp_
 
-#if __cplusplus >= 201103L && !WITH_INCLUDED_BOOST
+#if __cplusplus >= 201103L
 
 #include <exception>
 #define NAMESPACE std

@@ -52,11 +52,3 @@ RUN apt-get --quiet update \
             texlive-fonts-recommended \
             texlive-latex-recommended \
             texlive-latex-extra
-
-#  Keep this in a separate image layer so it can be dropped without
-#  busting build caches in case support for including Boost sources
-#  is removed.
-
-RUN apt-get --quiet update \
- && DEBIAN_FRONTEND=noninteractive \
-    ./install-deps --with-included-boost

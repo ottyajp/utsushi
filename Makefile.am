@@ -46,7 +46,6 @@ EXTRA_DIST += config-bot.h
 EXTRA_DIST += install-deps
 EXTRA_DIST += tools/boost-test-report
 EXTRA_DIST += tools/boost-test-report.xsl
-EXTRA_DIST += tools/include-boost-src
 EXTRA_DIST += upstream/include/no_attribute_directive.hpp
 EXTRA_DIST += upstream/tools/vc-list-files
 EXTRA_DIST += .gitignore
@@ -73,8 +72,6 @@ DISTCHECK_CONFIGURE_FLAGS += --enable-code-coverage
 
 DISTCHECK_CONFIGURE_FLAGS += --disable-sane-config
 DISTCHECK_CONFIGURE_FLAGS += --disable-udev-config
-
-DISTCHECK_CONFIGURE_FLAGS += --with-download-dir=$(DOWNLOAD_DIR)
 
 ##  API header files
 
@@ -153,141 +150,6 @@ $(srcdir)/utsushi/tag.hpp $(srcdir)/lib/tag.cpp: $(srcdir)/lib/tag.xml \
 	    -e '/^<!--/,/-->/{ /-->/d; s|^$$|//|p; s|^....|//|p; }' $< > $@; \
 	xsltproc --stringparam format $$format $(srcdir)/lib/tag.xsl $< >> $@
 	sed -i 's/SEC_N_("%1%")/"%1%"/' $@
-
-if with_included_boost
-
-all-local: boost-libs
-
-if with_shared_enabled
-
-##  Install those Boost libraries that we (likely) need at run-time.
-##  Boost.Test libraries should *not* be needed so we explicitly skip
-##  them here.
-
-install-exec-local: $(boostdir)/lib/stamp
-	@$(NORMAL_INSTALL)
-	@test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
-	@install_lib="$(INSTALL) $(INSTALL_STRIP_FLAGS)"; \
-	for lib in `ls $(boostdir)/lib/libboost_*$(LT_MODULE_EXT).*`; do \
-	  case $$lib in \
-	    */libboost_unit_test_framework$(LT_MODULE_EXT).*) \
-	      ;; \
-	    */libboost_test_exec_monitor$(LT_MODULE_EXT).*) \
-	      ;; \
-	    */libboost_prg_exec_monitor$(LT_MODULE_EXT).*) \
-	      ;; \
-	    *) \
-	      cmd="$$install_lib $$lib $(DESTDIR)$(pkglibdir)"; \
-	      echo $$cmd; \
-	      eval $$cmd; \
-	      filename=`echo $$lib | sed 's,.*/,,'`; \
-	      linkname=`echo $$filename \
-	        | sed 's/$(LT_MODULE_EXT).*$$/$(LT_MODULE_EXT)/'`; \
-	      test -e $(DESTDIR)$(pkglibdir)/$$linkname \
-	        && rm $(DESTDIR)$(pkglibdir)/$$linkname || true; \
-	      $(LN_S) $$filename $(DESTDIR)$(pkglibdir)/$$linkname ; \
-	      ;; \
-	  esac; \
-	done
-
-uninstall-local:
-	-rm $(DESTDIR)$(pkglibdir)/libboost_*$(LT_MODULE_EXT)*
-
-endif # with_shared_enabled
-
-endif # with_included_boost
-
-##  The Boost sources take an approach to building that is opposite of
-##  that used by autoconf and automake.  Whereas the latter build from
-##  a $(builddir) and get sources from a $(srcdir), the Boost sources
-##  expect to build from their $(srcdir) and put the build results in
-##  a $(builddir).
-
-##  To make the whole affair even more cumbersome, some parts (did you
-##  just say bjam?) cannot be built from a read-only $(srcdir) as they
-##  like to scribble in that directory.  Of course, a `make distcheck`
-##  makes the whole source tree read-only, so ... we have a workaround
-##  that basically copies the sources into the build tree, makes sure
-##  the build can scribble, builds and removes all sources again as if
-##  nothing out of the ordinary happened.
-
-boostdir = upstream/boost
-
-boost-libs: $(boostdir)/lib/stamp
-$(boostdir)/lib/stamp: Boost.Build
-	@echo "Building Boost libraries"; \
-	if test $(srcdir) = $(builddir); then \
-	  cmd="cd $(boostdir); ./bin/$(BOOST_BUILD) \
-	    --build-dir=. --stagedir=."; \
-	else \
-	  dir1=$(srcdir)/$(boostdir); \
-	  dir2=$(boostdir); \
-	  $(am__relativize); \
-	  cmd="cd $(srcdir)/$(boostdir); $$reldir/bin/$(BOOST_BUILD) \
-	    --build-dir=$$reldir --stagedir=$$dir2"; \
-	fi; \
-	cmd="($$cmd variant=debug $(boost_build_link_properties))"; \
-	echo $$cmd; \
-	eval $$cmd && touch $@
-
-BOOST_BUILD = bjam
-
-Boost.Build: $(boostdir)/bin/$(BOOST_BUILD)
-$(boostdir)/bin/$(BOOST_BUILD):
-	echo "Building Boost.Build ($(BOOST_BUILD))"; \
-	if test $(srcdir) = $(builddir); then \
-	  (cd $(boostdir)/tools/build/v2; \
-	   ./bootstrap.sh \
-	     && ./$(BOOST_BUILD) install --prefix=../../..); \
-	else \
-	  test -d $(boostdir)/tools/build \
-	    || $(MKDIR_P) $(boostdir)/tools/build; \
-	  cp -a $(srcdir)/$(boostdir)/tools/build/v2 \
-	    $(boostdir)/tools/build; \
-	  find $(boostdir) -type d -exec chmod u+w {} ';'; \
-	  (cd $(boostdir)/tools/build/v2; \
-	   ./bootstrap.sh \
-	     && ./$(BOOST_BUILD) install --prefix=../../..) \
-	    && rm -rf $(boostdir)/tools/build/v2; \
-	  rmdir $(boostdir)/tools/build || true; \
-	  rmdir $(boostdir)/tools || true; \
-	fi
-
-##  What a target for the bcp utility *could* look like.  We haven't
-##  been able to get something to work (using boost-1.46.1 on Ubuntu
-##  10.04 LTS) with a read-only source tree, getting bcp to link w/o
-##  errors and install somewhere below $(boostdir).
-##  For the time being we will rely on an existing bcp utility.
-##
-##  $(boostdir)/bcp: $(boostdir)/bjam
-##	@dir1=$(srcdir)/$(boostdir); \
-##	dir2=$(boostdir); \
-##	$(am__relativize); \
-##	cmd="(cd $(srcdir)/$(boostdir); $$reldir/bjam \
-##	  --build-dir=$$reldir tools/bcp)"; \
-##	echo $$cmd; \
-##	eval $$cmd
-
-mostlyclean-local:
-	-rm -r $(boostdir)/boost/bin.v2
-	-rm $(boostdir)/bootstrap.log
-
-clean-local:
-	-rm -r $(boostdir)/lib
-	-rm $(boostdir)/bjam
-
-distclean-local:
-
-maintainer-clean-local:
-	-rm -r $(srcdir)/$(boostdir)/../downloads/boost*
-	-rm -r $(srcdir)/$(boostdir)
-
-##  This target should *not* be conditionalized on with_included_boost
-##  as that only affects build-related actions.  Shipping the upstream
-##  Boost sources is independent from that.
-
-dist-hook:
-	(cd $(distdir); tools/include-boost-src --source=$(DOWNLOAD_DIR))
 
 ##  If successful, the distcheck target removes the whole $(distdir)
 ##  and takes all build results with it.  That includes all coverage

@@ -40,10 +40,6 @@ as well as some extras that we use to generate software metrics.
 The following options are supported:
 
   -h, --help              display this message and exit
-  --with-included-boost   assume that the included Boost sources will
-                          be used (does not install any Boost library
-                          packages).  See \``dirname $0`/tools/include-boost-src\`
-                          on how to include Boost sources.
 
 BUG: does not really search the sources
 BUG: only supports \`apt-get\`
@@ -76,14 +72,12 @@ as_root () {
 #  Set initial values of global variables.
 
 DO_HELP=no
-WITH_INCLUDED_BOOST=no
 
 #  Process command line options and arguments.
 
 parsed_opts=`getopt \
     --options h \
     --longopt help \
-    --longopt with-included-boost \
     -- "$@"`
 
 if test 0 != $?; then
@@ -96,7 +90,6 @@ eval set -- "$parsed_opts"
 while test x-- != "x$1"; do
     case "$1" in
         -h|--help)              DO_HELP=yes; shift;;
-        --with-included-boost)  WITH_INCLUDED_BOOST=yes; shift;;
         *)
             echo "`basename $0`: internal inconsistency" >&2
             exit 119            # Japanese emergency phone number ;-)
@@ -147,22 +140,12 @@ case "$PKG_MGR" in
         #  We use a number of Boost libraries to avoid reinventing
         #  wheels.  Boost.Test is only used in the unit test suite
         #  exercised by `make check`.
-        if test xno = x$WITH_INCLUDED_BOOST; then
-            pkg_list="$pkg_list libboost-filesystem-dev"
-            pkg_list="$pkg_list libboost-iostreams-dev"
-            pkg_list="$pkg_list libboost-program-options-dev"
-            pkg_list="$pkg_list libboost-regex-dev"
-            pkg_list="$pkg_list libboost-test-dev"
-            pkg_list="$pkg_list libboost-thread-dev"
-        else
-            has bcp     || pkg_list="$pkg_list libboost-tools-dev"
-            #  Needed to build libboost-iostreams
-            pkg_list="$pkg_list libz-dev"
-            pkg_list="$pkg_list libbz2-dev"
-            #  Needed by ./tools/include-boost-src
-            has wget    || pkg_list="$pkg_list wget"
-            pkg_list="$pkg_list ca-certificates"
-        fi
+        pkg_list="$pkg_list libboost-filesystem-dev"
+        pkg_list="$pkg_list libboost-iostreams-dev"
+        pkg_list="$pkg_list libboost-program-options-dev"
+        pkg_list="$pkg_list libboost-regex-dev"
+        pkg_list="$pkg_list libboost-test-dev"
+        pkg_list="$pkg_list libboost-thread-dev"
         #  Needed for device detection
         pkg_list="$pkg_list libudev-dev"
         #  Needed to enable optional components

@@ -152,20 +152,6 @@ AC_ARG_WITH(udev-confdir,
   [],
   [with_udev_confdir=guess])
 
-AC_ARG_WITH(included-boost,
-  AS_HELP_STRING([--with-included-boost],
-     [use the Boost sources included here, if any @<:@check@:>@.
-      Directory locations for other --with-boost-* options will be
-      overridden.]),
-  [],
-  [with_included_boost=check])
-AC_ARG_WITH(download-dir,
-  AS_HELP_STRING([--with-download-dir@<:@=ABS_DIR@:>@],
-    [where to cache upstream source downloads @<:@/path/to/upstream/downloads@:>@.
-     Distributable creation may include upstream sources in a way that depends
-     on our own distributed sources.  For that to work as intended, it attempts
-     to download upstream archives into this location.]))
-
 dnl  preprocessor symbols for optional/conditional code
 
 AC_DEFINE([HAVE_LIBGTKMM],
@@ -196,8 +182,6 @@ AC_DEFINE([HAVE_IMAGE_MAGICK_PP],
   [0], [Define to 1 if ImageMagick's C++ API is usable])
 AC_DEFINE([MAGICK_CONVERT],
   [], [Define to an appropriate command-line invocation for convert])
-AC_DEFINE([WITH_INCLUDED_BOOST],
-  [0], [Define to 1 if using the included Boost sources])
 
 dnl  checks for programs, modules and libraries
 
@@ -243,73 +227,18 @@ AM_CONDITIONAL([with_shared_enabled], [test xyes = x$enable_shared])
 AM_CONDITIONAL([with_static_enabled], [test xyes = x$enable_static])
 
                                 dnl  cross-platform C++ extensions
-AS_IF([test xyes != x$with_included_boost],
-  [AX_BOOST_BASE([1.49.0],
-     [AX_BOOST_SYSTEM
-      AX_BOOST_FILESYSTEM
-      AX_BOOST_IOSTREAMS
-      AX_BOOST_PROGRAM_OPTIONS
-      AS_IF([test $__cplusplus -lt 201103], [AX_BOOST_REGEX])
-      AS_IF([test $__cplusplus -lt 201103], [AX_BOOST_THREAD])
-      AX_BOOST_UNIT_TEST_FRAMEWORK
-     ],
-     [AS_IF([test -d $ac_aux_dir/boost],
-        [AS_IF([test xno != x$with_included_boost],
-           [AC_MSG_NOTICE([using included Boost sources instead])
-            with_included_boost=yes
-           ],
-           [AC_MSG_ERROR([use included sources or install Boost libraries])])
-        ],
-        [AC_MSG_ERROR([install Boost libraries])
-        ])
-     ])
-  ])
-AS_IF([test xyes = x$with_included_boost],
-  [AS_IF([test -d $ac_aux_dir/boost],
-     [ax_cv_boost_unit_test_framework=yes
-      aux_dir=`echo $ac_aux_dir | sed "s,^$srcdir/,,"`
-      BOOST_CPPFLAGS="-I\$(top_srcdir)/$aux_dir/boost"
-      BOOST_LDFLAGS="-L\$(top_builddir)/$aux_dir/boost/lib"
-      BOOST_SYSTEM_LIB=-lboost_system
-      BOOST_FILESYSTEM_LIB=-lboost_filesystem
-      BOOST_IOSTREAMS_LIB=-lboost_iostreams
-      BOOST_PROGRAM_OPTIONS_LIB=-lboost_program_options
-      BOOST_REGEX_LIB=-lboost_regex
-      BOOST_THREAD_LIB=-lboost_thread
-      BOOST_UNIT_TEST_FRAMEWORK_LIB=-lboost_unit_test_framework
-
-      #  Make sure we can build Boost.Iostreams
-
-      AC_CHECK_LIB([bz2], [BZ2_bzReadOpen],
-        [true],
-        [AC_MSG_ERROR([included Boost sources require libbz2 to build])])
-      AC_CHECK_LIB([z], [gzopen],
-        [true],
-        [AC_MSG_ERROR([included Boost sources require zlib to build])])
-
-      #  Only build with those feature sets that we need.  There is
-      #  no point in building static libraries that we don't use.
-
-      AS_IF([test xyes = x$enable_shared],
-        [boost_link_props="$boost_link_props link=shared"])
-      AS_IF([test xyes = x$enable_static],
-        [boost_link_props="$boost_link_props link=static"])
-      AC_SUBST(boost_build_link_properties,[$boost_link_props])
-
-      #  Making the Boost header files system headers allows us to
-      #  treat all warnings in our code as errors.  The '-isystem'
-      #  option is GCC C/C++ compiler specific.
-
-      AS_IF([test xyes = x$ac_cv_cxx_compiler_gnu],
-        [BOOST_CPPFLAGS="-isystem \$(top_srcdir)/$aux_dir/boost"])
-
-      AC_DEFINE([WITH_INCLUDED_BOOST], [1])
-     ],
-     [AC_MSG_ERROR([install Boost libraries])
-     ])
+AX_BOOST_BASE([1.49.0],
+  [AX_BOOST_SYSTEM
+   AX_BOOST_FILESYSTEM
+   AX_BOOST_IOSTREAMS
+   AX_BOOST_PROGRAM_OPTIONS
+   AS_IF([test $__cplusplus -lt 201103], [AX_BOOST_REGEX])
+   AS_IF([test $__cplusplus -lt 201103], [AX_BOOST_THREAD])
+   AX_BOOST_UNIT_TEST_FRAMEWORK
+  ],
+  [AC_MSG_ERROR([install Boost libraries])
   ])
 
-AM_CONDITIONAL([with_included_boost], [test xyes = x$with_included_boost])
 AM_CONDITIONAL([enable_boost_unit_test_framework],
   [test xyes = x$ax_cv_boost_unit_test_framework])
 
@@ -617,10 +546,6 @@ AS_IF([test xyes = x$ac_cv_cxx_compiler_gnu],
 
 AC_SUBST([AM_CXXFLAGS], ["-Wall $gcc_AWARE $code_coverage_cxxflags"])
 AC_SUBST([AM_LDFLAGS], [""])
-
-AS_IF([test x = "x$with_download_dir"],
-  [with_download_dir=$am_aux_dir/downloads])
-AC_SUBST(DOWNLOAD_DIR, $with_download_dir)
 
 AC_CONFIG_FILES([
   Makefile

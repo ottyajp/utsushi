@@ -43,9 +43,6 @@ The following options are supported:
 If you want to rerun \``basename $0`\`, you should pass it the \`--force\`
 option to prevent \`libtoolize\` from reporting an error.
 
-For those of you that want/need to include Boost sources, please refer
-to \``dirname $0`/tools/include-boost-src\`.
-
 To accommodate SANE idiosyncracies, \``basename $0`\` applies a patch to the
 \`ltmain.sh\` script.  When doing so, it may complain about line offsets
 and/or using a fuzz.  You can use the \`PATCH_OPTS\` environment variable

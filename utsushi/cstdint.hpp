@@ -37,7 +37,7 @@
  *  -# http://wikipedia.org/wiki/C++_Technical_Report_1
  */
 
-#if __cplusplus >= 201103L && !WITH_INCLUDED_BOOST
+#if __cplusplus >= 201103L
 
 #include <cstdint>
 #define NAMESPACE std

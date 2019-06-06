@@ -175,7 +175,6 @@ BUILDING/INSTALLING FROM SOURCE
     --enable-test-reports
     --enable-udev-config
     --with-gtkmm
-    --with-included-boost
     --with-jpeg
     --with-magick
     --with-sane
