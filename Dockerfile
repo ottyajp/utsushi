@@ -18,7 +18,7 @@
 #  You ought to have received a copy of the GNU General Public License
 #  along with this package.  If not, see <http://www.gnu.org/licenses/>.
 
-ARG   codename=jessie
+ARG   codename=ascii
 FROM  registry.gitlab.com/paddy-hack/devuan/slim:$codename
 LABEL maintainer="Olaf Meeuwissen <paddy-hack@member.fsf.org>" \
       projecturl="https://gitlab.com/utsushi/"
