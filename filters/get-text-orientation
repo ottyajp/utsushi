@@ -47,32 +47,23 @@ if test $? != 0; then
     exit 1
 fi
 
-tmpfile=$(mktemp -q .reorient.XXX)
-trap "rm -f $tmpfile" 0 1 2 15
-
 case "$engine" in
     */tesseract|tesseract)
 
-        #  Notwithstanding what the manual page says, tesseract
-        #  doesn't support reading from standard input with the
-        #  `-psm 0` option.  We stuff incoming image data into a
-        #  temporary file to work around this limitation.
-        #  See https://github.com/tesseract-ocr/tesseract/issues/85
+        #  Tesseract 3.03 outputs the results we want to standard
+        #  error; Tesseract 3.04 dumps it on standard output.  We
+        #  want it on the latter.
 
-        cat - > $tmpfile
-
-        #  We don't care about the "regular" tesseract output so
-        #  divert that to /dev/null.  The output that we do care
-        #  about ends up on standard error, but our caller looks
-        #  for it on standard output.  Redirect to handle that.
-
-        $engine $tmpfile /dev/null -psm 0 -l osd 2>&1
+        $engine - - -psm 0 -l osd 2>&1
         ;;
 
     */ocr-engine-getrotate)
 
         #  The ocr-engine-getrotate utility expects an uncompressed
         #  BMP image.
+
+        tmpfile=$(mktemp -q .reorient.XXX)
+        trap "rm -f $tmpfile" 0 1 2 15
 
         $convert - -compress None bmp3:$tmpfile
         $engine $tmpfile
