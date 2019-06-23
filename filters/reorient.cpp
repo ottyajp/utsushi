@@ -483,6 +483,13 @@ reorient::finalize (const context& ctx)
         log::alert
           (format ("unexpected document orientation: %1% degrees")
            % degrees);
+
+      if (engine_ == "tesseract"
+          && !tesseract_version_before_("3.04")) {
+        // Orientation reporting changed direct with 3.04.  See #78
+        /**/ if ( 90 == degrees) rv.orientation (context::left_bottom);
+        else if (270 == degrees) rv.orientation (context::right_top);
+      }
     }
   return rv;
 }
