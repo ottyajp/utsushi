@@ -262,11 +262,11 @@ public:
     Magick::Geometry rv = bbox (clone);
     if (HAVE_IMAGE_MAGICK_PP)
     {
-      if (clone.page ().xNegative ())
+      if (clone.page ().xOff () < 0)
         rv.xOff (rv.xOff () - clone.page ().xOff());
       else
         rv.xOff (rv.xOff () + clone.page ().xOff());
-      if (clone.page ().yNegative ())
+      if (clone.page ().yOff () < 0)
         rv.yOff (rv.yOff () - clone.page ().yOff());
       else
         rv.yOff (rv.yOff () + clone.page ().yOff());
