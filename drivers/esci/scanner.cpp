@@ -141,6 +141,7 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
                || info.product_name () == "ES-400"
                || info.product_name () == "ES-500W"
                || info.product_name () == "DS-535"
+               || info.product_name () == "DS-535H"
                || info.product_name () == "DS-775"
                || info.product_name () == "DS-575W"
                || info.product_name () == "FF-680W"
@@ -305,6 +306,19 @@ libdrv_esci_LTX_scanner_factory (const scanner::info& info, scanner::ptr& rv)
 	          )
         {
           sp = make_shared< EP7xxA > (cnx);
+        }
+      else if (info.product_name () == "PID 1163"
+	          )
+        {
+          sp = make_shared< EPM5xxT > (cnx);
+        }
+      else if (info.product_name () == "PID 1162"
+            || info.product_name () == "PID 1169"
+            || info.product_name () == "PID 116A"
+            || info.product_name () == "PID 116E"
+	          )
+        {
+          sp = make_shared< EWM7xxTR > (cnx);
         }
       else
         {
