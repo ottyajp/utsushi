@@ -38,6 +38,8 @@
 #include <gtkmm/main.h>
 #include <gtkmm/messagedialog.h>
 
+#include <gio/gio.h>
+
 #include <utsushi/file.hpp>
 #include <utsushi/i18n.hpp>
 #include <utsushi/range.hpp>
@@ -357,7 +359,13 @@ dialog::on_scan (void)
   file_chooser dialog (*this, SEC_("Save As..."));
 
   fs::path default_name (std::string (SEC_("Untitled")) + ".pdf");
-  fs::path default_path (fs::current_path () / default_name);
+
+  // load previous-path
+  GSettings *settings = g_settings_new("apps.utsushi");
+  GVariant *previousPath = g_settings_get_value(settings, "previous-path");
+  gchar *savePath;
+  g_variant_get(previousPath, "s", &savePath);
+  fs::path default_path (savePath / default_name);
 
   dialog.set_current_name (default_name.string ());
   dialog.set_filename (default_path.string ());
@@ -369,6 +377,10 @@ dialog::on_scan (void)
   if (Gtk::RESPONSE_ACCEPT != dialog.run ()) return;
 
   std::string path (dialog.get_filename ());
+
+  // save previous-path
+  previousPath = g_variant_new_string(dialog.get_current_folder().c_str());
+  g_settings_set_value(settings, "previous-path", previousPath);
 
   // Infer image format and check support
 
